@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.16;
 
 library EchidnaUtils {
     event AssertionFailed(string msg, uint256 expected, uint256 actualValue);

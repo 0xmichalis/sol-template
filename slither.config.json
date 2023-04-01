@@ -2,6 +2,5 @@
 	"detectors_to_run": "all",
 	"exclude_informational": true,
 	"exclude_low": true,
-	"filter_paths": "(lib/)",
-	"ignore_compile": true
+	"filter_paths": "(lib/|test/)"
 }
