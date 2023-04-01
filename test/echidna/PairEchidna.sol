@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
-import "./EchidnaUtils.sol";
+import './EchidnaUtils.sol';
 
 contract PairEchidna {
     bool isSetup;
