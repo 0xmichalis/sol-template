@@ -15,7 +15,7 @@ jobs:
           version: nightly
 
       - name: Run Slither
-        uses: crytic/slither-action@v0.2.0
+        uses: crytic/slither-action@v0.3.0
         with:
           node-version: 16
           slither-config: ./slither.config.json
