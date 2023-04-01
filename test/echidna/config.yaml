@@ -1,0 +1,3 @@
+testMode: assertion
+corpusDir: corpus
+testLimit: 50000
