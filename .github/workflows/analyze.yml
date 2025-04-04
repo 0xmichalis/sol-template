@@ -1,0 +1,23 @@
+name: Static Analysis
+
+on: [push, pull_request]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Check Foundry version
+        run: |
+          forge --version
+
+      - name: Install Slither
+        run: pip install slither-analyzer==0.10.0
+
+      - name: Run Slither
+        run: slither .

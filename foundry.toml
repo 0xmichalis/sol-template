@@ -1,0 +1,11 @@
+[profile.default]
+optimizer_runs = 1000000
+libs = ['node_modules', 'lib']
+
+[fuzz]
+runs = 500
+fail_on_revert = false
+show_metrics = true
+
+[fmt]
+line_length = 100

@@ -1,0 +1,26 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Check Foundry version
+        run: |
+          forge --version
+
+      - name: Install dependencies
+        run: forge install
+
+      - name: Check contract sizes
+        run: forge build --sizes
+
+      - name: Check gas snapshots
+        run: forge snapshot --check
