@@ -16,4 +16,7 @@ jobs:
         run: forge install
 
       - name: Run tests
-        run: forge test
+        run: forge coverage --report lcov
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
