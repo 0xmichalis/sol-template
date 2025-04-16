@@ -16,7 +16,10 @@ jobs:
         run: forge install
 
       - name: Run tests
-        run: forge coverage --report lcov
+        run: |
+          forge coverage --report lcov
+          # Remove test coverage for test files
+          sed -i '/SF:.*test\//,/end_of_record/d' lcov.info
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
