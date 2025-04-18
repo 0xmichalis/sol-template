@@ -18,14 +18,19 @@ forge install
 forge build
 ```
 
-## Test
+## Deploy
 
 ```sh
-forge test
+forge create --rpc-url <your_rpc_url> \
+    --private-key <your_private_key> \
+    --etherscan-api-key <your_etherscan_api_key> \
+    --verify \
+    src/Counter.sol:Counter
 ```
 
-## Update Gas Snapshot
+## Contribute
 
 ```sh
 forge snapshot
+forge fmt
 ```
