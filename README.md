@@ -31,6 +31,6 @@ forge create --rpc-url <your_rpc_url> \
 ## Contribute
 
 ```sh
-forge snapshot
+forge snapshot -vvv
 forge fmt
 ```
