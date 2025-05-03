@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Keep [README.md](mdc:README.md) up to date with latest capabilities but avoid unnecessary changes. Only update when latest capabilities introduce breakages to the documented README commands.
+- Ensure the code you have provided is complete (compiles and tests pass).
+- Ensure the code is formatted, if there is a formatting-specific configuration in the project.
+- Avoid making any formatting changes when not explicitly asked to do so.
+- Avoid renaming variables unless explicitly asked to do so.
+- When providing a solution, give me a score on a scale of 1-10 about how confident you are in the solution.

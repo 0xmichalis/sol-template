@@ -1,0 +1,30 @@
+---
+description: 
+globs: src/**/*.sol
+alwaysApply: false
+---
+## General
+
+- Always use named import syntax, don’t import full files. This restricts what is being imported to just the named items, not everything in the file. Importing full files can result in solc complaining about duplicate definitions and slither erroring, especially as repos grow and have more dependencies with overlapping names.
+- Use descriptive variable names.
+- Limit the number of active variables.
+- No redundant logic.
+- Avoid arrowized code and exit early as much as possible to reduce mental load when seeing the code.
+- Related code should be placed near each other.
+- Delete unused code.
+- When writing an if/else clause, prefer putting the clause with most of the code in the else part to keep the whole conditional more readable.
+- When implementing nonces to guarantee single use and avoid replay attacks, use bitmap nonces instead of a naive `mapping (uint256 => bool)` as the gas cost for bitmaps tends to be cheaper.
+
+
+## Assembly tricks
+
+- When dealing with revert bytes, never bubble up with `revert(string(revertBytes))` - this is wrong as it re-encodes the revert data as an `Error(string)` revert type. Instead do `assembly { revert(add(revertBytes, 0x20), mload(revertBytes)) }`.
+- When casting between array types of compatible types (`address[] vs address payable[]`, `address[] vs interface[]`, `address[] vs contract[]`, `uint160[] vs address[]`, `uint256[] vs bytes32[]`, `uint256[N] vs bytes32[N]`, etc.), instead of the naive approach of creating a new array and copying all items from the old array, assign one array pointer to the other via `assembly { newArr := oldArr }`. The same trick can be applied to compatible structs.
+- To shorten a dynamic memory array, do `assembly { mstore(arr, newSize) }`, since the size is stored in the first slot in memory.
+- To shorten a static memory array, create a new static array with the required size and simply `assembly { newArr := oldArr }`.
+
+
+## ERC20
+
+- When interacting with ERC20 tokens, always use OpenZeppelin's [`SafeERC20`](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20#SafeERC20) library.
+- If a contract needs to spend ERC20 tokens from a user, leverage [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) to avoid requiring the user to first `approve` our contract in the ERC20 contract.
