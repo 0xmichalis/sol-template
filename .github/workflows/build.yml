@@ -17,7 +17,7 @@ jobs:
           forge --version
 
       - name: Install dependencies
-        run: forge install
+        run: forge soldeer install
 
       - name: Check contract sizes
         run: forge build --sizes

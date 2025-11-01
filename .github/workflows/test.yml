@@ -13,7 +13,7 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Install dependencies
-        run: forge install
+        run: forge soldeer install
 
       - name: Run tests
         run: |
