@@ -9,7 +9,7 @@ Barebones template to get started with Solidity projects.
 ```sh
 git clone https://github.com/0xmichalis/sol-template.git
 cd sol-template
-forge install
+forge soldeer install
 ```
 
 ## Build

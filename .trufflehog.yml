@@ -1,0 +1,31 @@
+detectors:
+  - name: evm_private_key_detector
+    keywords:
+      - pk
+      - private
+      - key
+      - priv
+      - secret
+      - mnemonic
+      - phrase
+      - words
+      - seed
+      - '0x'
+      - pass
+    regex:
+      private_key: '[A-Fa-f0-9]{64}'
+  - name: evm_mnemonic_detector
+    keywords:
+      - pk
+      - private
+      - key
+      - priv
+      - secret
+      - mnemonic
+      - phrase
+      - words
+      - seed
+      - '0x'
+      - pass
+    regex:
+      mnemonic: '(?:[a-z]{3,8}\s){11}(?:(?:[a-z]{3,8}\s){3}){0,4}[a-z]{3,8}'
