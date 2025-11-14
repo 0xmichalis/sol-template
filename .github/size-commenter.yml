@@ -1,0 +1,12 @@
+comment:
+  on-update: edit
+
+  header: |
+    Contract sizes
+
+  snippets:
+    - id: any-source-file-changed-{{ filesHash }}
+      files:
+        - "src/**/*.sol"
+      body: |
+        <pre>{{ sizes }}</pre>
