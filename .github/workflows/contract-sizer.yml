@@ -1,0 +1,47 @@
+name: Contract sizer
+
+on:
+  pull_request:
+
+jobs:
+  sizer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub app token
+        uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          # Follow the instructions here to set up the action:
+          # https://github.com/actions/create-github-app-token?tab=readme-ov-file#usage
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Install dependencies
+        run: forge soldeer install
+
+      - name: Get contract sizes
+        id: contract-sizes
+        shell: bash {0}
+        run: |
+          {
+            echo 'SIZES<<EOF'
+            forge build --sizes src
+            echo EOF
+          } >> "$GITHUB_OUTPUT" 2>&1
+
+      - name: Comment on PR
+        uses: exercism/pr-commenter-action@v1.5.1
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          config-file: ".github/size-commenter.yml"
+          template-variables: |
+            {
+              "sizes": ${{ toJSON(steps.contract-sizes.outputs.SIZES) }},
+              "filesHash": ${{ toJSON(hashFiles('src/**/*.sol')) }}
+            }
