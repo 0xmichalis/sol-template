@@ -14,3 +14,10 @@ jobs:
 
       - name: Check formatting
         run: forge fmt --check
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: |
+            **/*.md
+            **/*.mdc
