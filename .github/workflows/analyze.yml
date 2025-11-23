@@ -16,8 +16,14 @@ jobs:
         run: |
           forge --version
 
+      - name: Install dependencies
+        run: forge soldeer install
+
       - name: Install Slither
-        run: pip install slither-analyzer==0.10.0
+        run: pip install slither-analyzer==0.11.0
 
       - name: Run Slither
         run: slither .
+
+      - name: Run mutation testing
+        run: slither-mutate ./src --test-cmd="forge test"
